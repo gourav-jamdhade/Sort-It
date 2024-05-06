@@ -19,7 +19,7 @@ class GeneratedArrayAdapter(private var array: IntArray) :
     }
 
     override fun onBindViewHolder(holder: GeneratedArrayAdapter.ViewHolder, position: Int) {
-        holder.bind(array[position])
+        holder.bind(array[position],position)
     }
 
     override fun getItemCount(): Int {
@@ -33,9 +33,12 @@ class GeneratedArrayAdapter(private var array: IntArray) :
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val textViewItem: TextView = itemView.findViewById(R.id.textViewItem)
+        private val textViewIndex: TextView = itemView.findViewById(R.id.textViewIndex)
 
-        fun bind(item: Int) {
+        fun bind(item: Int, index:Int) {
             textViewItem.text = item.toString()
+            textViewIndex.text = index.toString()
+
         }
     }
 

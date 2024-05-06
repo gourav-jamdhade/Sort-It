@@ -5,7 +5,8 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:background="@color/white">
 
     <TextView
         android:id="@+id/textViewTitle"
@@ -108,16 +109,22 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/llArraySize" />
 
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewGeneratedArray"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_margin="25dp"
-        android:padding="5dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btnGenerateArray" />
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="10dp"
+        android:background="@drawable/rounded_corner_rv"
+        android:padding="10dp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="@id/btnGenerateArray"
+        app:layout_constraintStart_toStartOf="@id/btnGenerateArray"
+        app:layout_constraintTop_toBottomOf="@id/btnGenerateArray"
+        tools:listitem="@layout/rv_tem_view" />
+
 
     <Button
         android:id="@+id/buttonVisualize"
@@ -128,10 +135,10 @@
         android:backgroundTint="#FF5722"
         android:text="Visualize Sorting"
         android:textScaleX="1.5"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/recyclerViewGeneratedArray"
-        android:visibility="gone"/>
+        app:layout_constraintTop_toBottomOf="@id/recyclerViewGeneratedArray" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

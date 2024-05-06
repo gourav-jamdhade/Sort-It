@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.jetbrains.kotlin.android)
 }
 
+
 android {
     namespace = "com.example.sortingvizualizer"
     compileSdk = 34
@@ -37,6 +38,8 @@ android {
     buildFeatures{
         viewBinding = true
     }
+
+
 }
 
 dependencies {
@@ -50,4 +53,6 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     implementation ("com.google.android.material:material:1.2.0-alpha05")
+    implementation ("com.github.kbiakov:CodeView-Android:1.3.2")
+
 }

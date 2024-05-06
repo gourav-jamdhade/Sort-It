@@ -3,24 +3,50 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:padding="10dp"
     android:orientation="vertical"
     app:cardElevation="5dp"
+    android:padding="8dp"
+    app:cardCornerRadius="8dp"
+    android:backgroundTint="#FFC107"
     android:layout_gravity="center_horizontal"
     app:cardUseCompatPadding="true"
-    android:backgroundTint="#FFC107"
+    android:background="@drawable/rounded_corner"
     >
 
-    <TextView
-        android:id="@+id/textViewItem"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="18sp"
-        android:text="100"
-        android:padding="10dp"
-        android:textColor="#000000"
+        android:orientation="vertical"
         android:background="@drawable/rounded_corner"
-        android:textStyle="bold"
-        android:layout_gravity="center_horizontal"/>
+        >
+
+        <TextView
+            android:id="@+id/textViewItem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:background="@drawable/rounded_corner"
+            android:text="100"
+            android:padding="10dp"
+            android:textColor="#000000"
+            android:textStyle="bold"
+            android:layout_gravity="center_horizontal"/>
+
+        <TextView
+            android:id="@+id/textViewIndex"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:background="@android:color/transparent"
+            android:shadowColor="@android:color/transparent"
+            android:padding="8dp"
+            android:text="0"
+            android:textColor="#B0000000"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+
 
 </androidx.cardview.widget.CardView>

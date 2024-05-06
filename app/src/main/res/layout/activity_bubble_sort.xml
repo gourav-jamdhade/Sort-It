@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".BubbleSort.BubbleSortActivity">
+
+    <Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#0B27BF"
+        android:navigationIcon="@drawable/arrow_back"
+        android:padding="5dp"
+        android:title="Bubble Sort"
+        android:titleTextColor="@color/white" />
+
+
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/toolbar"
+        android:orientation="vertical"
+        android:padding="5dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvArray"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="16dp"
+                android:background="#f0f0f0"
+                android:clipToPadding="false"
+                android:overScrollMode="never"
+                android:padding="8dp"
+                android:scrollbars="none" />
+
+            <TextView
+                android:id="@+id/tvSwappingIndices"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/rvArray"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="25dp"
+                android:background="@drawable/tv_bg"
+                android:padding="10dp"
+                android:text="Swapping Indices: "
+                android:textColor="#FFFFFF"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvLoop"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/rvArray"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="25dp"
+                android:background="@drawable/tv_bg"
+                android:padding="10dp"
+                android:text="Loop Count(Outer, Inner): "
+                android:textColor="#FFFFFF"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/btnStart"
+                style="@style/TextAppearance.AppCompat.Button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="16dp"
+                android:backgroundTint="#FF9800"
+                android:elevation="5dp"
+                android:padding="15dp"
+                android:text="Start Sorting"
+                android:textColor="@color/white"
+                app:cornerRadius="10dp" />
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/algorithmLanguageButtons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/scrollView"
+        android:layout_marginTop="5dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnJava"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Java"
+            android:textColor="#FF5722" />
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="1dp"
+            android:layout_marginVertical="10dp"
+            android:layout_height="match_parent"
+            android:background="@color/black" />
+
+        <Button
+            android:id="@+id/btnCpp"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="C++"
+            android:textColor="#FF5722" />
+
+        <View
+            android:id="@+id/divider2"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_marginVertical="10dp"
+            android:background="@color/black" />
+
+        <Button
+            android:id="@+id/btnPython"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Python"
+            android:textColor="#FF5722" />
+    </LinearLayout>
+
+    <io.github.kbiakov.codeview.CodeView
+        android:id="@+id/tvAlgorithmCode"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/algorithmLanguageButtons"
+        android:layout_marginHorizontal="15dp"
+        android:padding="16dp"
+        android:scrollbars="vertical|horizontal"
+        android:textSize="14sp" />
+
+</RelativeLayout>
