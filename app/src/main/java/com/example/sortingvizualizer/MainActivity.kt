@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sortingvizualizer.BubbleSort.BubbleSortActivity
+import com.example.sortingvizualizer.MergeSortActivity.MergeSortActivity
 import com.example.sortingvizualizer.databinding.ActivityMainBinding
 import java.util.Random
 
@@ -62,7 +63,7 @@ class MainActivity : AppCompatActivity() {
         val intent = when (selectedAlgorithm) {
             "Bubble Sort" -> Intent(this, BubbleSortActivity::class.java)
 //            "Insertion Sort" -> Intent(this, InsertionSortActivity::class.java)
-//            "Merge Sort" -> Intent(this, MergeSortActivity::class.java)
+            "Merge Sort" -> Intent(this, MergeSortActivity::class.java)
 //            "Quick Sort" -> Intent(this, QuickSortActivity::class.java)
             else -> null
         }

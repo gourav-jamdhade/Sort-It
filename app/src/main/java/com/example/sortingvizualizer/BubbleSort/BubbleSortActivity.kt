@@ -2,6 +2,7 @@ package com.example.sortingvizualizer.BubbleSort
 
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.view.animation.AnimationUtils
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -9,13 +10,17 @@ import com.example.sortingvizualizer.R
 import com.example.sortingvizualizer.databinding.ActivityBubbleSortBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import kotlin.math.abs
 
 class BubbleSortActivity : AppCompatActivity() {
     private lateinit var binding: ActivityBubbleSortBinding
     private lateinit var arrayAdapter: BubbleSortAdapter
+    var isPaused = false
+    private var sortingJob: Job? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityBubbleSortBinding.inflate(layoutInflater)
@@ -40,8 +45,25 @@ class BubbleSortActivity : AppCompatActivity() {
             arrayAdapter.updateArray(it)
         }
 
+        binding.btnPause.setOnClickListener {
+            isPaused = true
+            binding.btnPause.visibility = View.GONE
+            binding.btnPlay.visibility = View.VISIBLE
+            pauseSorting()
+        }
+
+        binding.btnPlay.setOnClickListener {
+            isPaused = false
+            binding.btnPause.visibility = View.VISIBLE
+            binding.btnPlay.visibility = View.GONE
+            resumeSorting()
+        }
+
         binding.btnStart.setOnClickListener {
-            startSorting(randomArray)
+            binding.btnPause.visibility = View.VISIBLE
+            binding.btnPlay.visibility = View.VISIBLE
+            binding.slider.visibility = View.VISIBLE
+            startSorting(randomArray, 3000)
         }
 
         binding.btnJava.setOnClickListener {
@@ -66,8 +88,56 @@ class BubbleSortActivity : AppCompatActivity() {
             binding.tvAlgorithmCode.setCode(getPythonCode().toString(), "py")
         }
 
+
+        binding.slider.addOnChangeListener { slider, value, fromUser ->
+            when (value.toInt()) {
+                0 -> {
+                    val delayTime = 3000
+                    CoroutineScope(Dispatchers.Main).launch {
+                        sortingJob?.cancel()
+                        delay(500)
+                        startSorting(arrayAdapter.getArray(), delayTime)
+                        delay(500)
+                    }
+
+
+                }
+
+                1 -> {
+                    val delayTime = 2250
+                    CoroutineScope(Dispatchers.Main).launch {
+                        sortingJob?.cancel()
+                        delay(500)
+                        startSorting(arrayAdapter.getArray(), delayTime)
+                        delay(500)
+                    }
+                }
+
+                2 -> {
+                    val delayTime = 1750
+
+                    CoroutineScope(Dispatchers.Main).launch {
+                        sortingJob?.cancel()
+                        delay(1000)
+                        startSorting(arrayAdapter.getArray(), delayTime)
+                        delay(500)
+                    }
+                }
+            }
+        }
         binding.tvAlgorithmCode.setCode(getJavaCode().toString())
         binding.btnJava.setTextColor(getColor(R.color.green))
+    }
+
+    private fun pauseSorting() {
+        isPaused = true
+        sortingJob?.cancel()
+    }
+
+
+    private fun resumeSorting() {
+        isPaused = false
+        startSorting(arrayAdapter.getArray(), 3000)
     }
 
 
@@ -133,11 +203,12 @@ class BubbleSortActivity : AppCompatActivity() {
 
     }
 
-    private fun startSorting(randomArray: IntArray?) {
+    private fun startSorting(randomArray: IntArray?, delayTime: Int) {
         var n = randomArray!!.size
-        CoroutineScope(Dispatchers.Default).launch {
+        sortingJob = CoroutineScope(Dispatchers.Default).launch {
             for (i in 0 until n - 1) {
                 for (j in 0 until n - i - 1) {
+
 
                     if (randomArray[j] > randomArray[j + 1]) {
 
@@ -148,12 +219,13 @@ class BubbleSortActivity : AppCompatActivity() {
                                 index1 = j,
                                 index2 = j + 1,
                                 loop = i,
-                                loopOuter = j
+                                loopOuter = j,
+                                delayTime = delayTime.toLong()
                             )
                         }
 
                         Log.d("element", "${randomArray[j]}, ${randomArray[j + 1]}")
-                        delay(1500)
+                        delay(delayTime.toLong())
                     }
                 }
             }
@@ -162,7 +234,9 @@ class BubbleSortActivity : AppCompatActivity() {
 
     private fun swapAnimation(index1: Int, index2: Int) {
         val animation = AnimationUtils.loadAnimation(this, R.anim.swap_animation)
+        animation.duration = 300L
         binding.rvArray.findViewHolderForAdapterPosition(index1)?.itemView?.startAnimation(animation)
         binding.rvArray.findViewHolderForAdapterPosition(index2)?.itemView?.startAnimation(animation)
     }
+
 }

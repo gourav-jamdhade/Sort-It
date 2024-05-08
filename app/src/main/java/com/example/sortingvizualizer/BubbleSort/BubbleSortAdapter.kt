@@ -18,7 +18,7 @@ class BubbleSortAdapter(
     private var swapIndices: Pair<Int, Int>? = null,
     private val swapListener: (Int, Int) -> Unit,
     private val tvSwappingIndices: TextView,
-    private val tvLoop:TextView
+    private val tvLoop: TextView
 ) :
     RecyclerView.Adapter<BubbleSortAdapter.ViewHolder>() {
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -59,6 +59,11 @@ class BubbleSortAdapter(
     override fun getItemCount(): Int {
         return array.size
 
+
+    }
+
+    fun getArray(): IntArray {
+        return array
     }
 
     fun updateArray(newArray: IntArray) {
@@ -66,7 +71,7 @@ class BubbleSortAdapter(
         notifyDataSetChanged()
     }
 
-    fun swapItems(recyclerView: RecyclerView, index1: Int, index2: Int, loop:Int, loopOuter:Int) {
+    fun swapItems(recyclerView: RecyclerView, index1: Int, index2: Int, loop: Int, loopOuter: Int, delayTime:Long) {
         val temp = array[index1]
         array[index1] = array[index2]
         array[index2] = temp
@@ -93,9 +98,9 @@ class BubbleSortAdapter(
             swapIndices = null
             notifyItemChanged(index1)
             notifyItemChanged(index2)
-        }, 1000)
+        }, delayTime.toLong())
 
-        tvSwappingIndices.text = "Swapping indices: $index1, $index2"
+        tvSwappingIndices.text = "Swapping indices: i = $index1, j = $index2"
         tvLoop.text = "Loop Count: $loop, $loopOuter"
 
     }

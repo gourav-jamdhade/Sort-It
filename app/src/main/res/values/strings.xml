@@ -7,4 +7,11 @@
         <item>Quick Sort</item>
         <item>Merge Sort</item>
     </string-array>
+
+    <string-array name="speed_options">
+        <item>Min</item>
+        <item>Max</item>
+        <item>Med</item>
+    </string-array>
+    <string name="title_activity_merge_sort">MergeSortActivity</string>
 </resources>

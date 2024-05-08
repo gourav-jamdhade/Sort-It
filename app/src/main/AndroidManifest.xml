@@ -13,6 +13,14 @@
         android:theme="@style/Theme.SortingVizualizer"
         tools:targetApi="31">
         <activity
+            android:name=".MergeSortActivity.MergeSortActivity"
+            android:exported="false"
+            android:label="@string/title_activity_merge_sort"
+            android:theme="@style/Theme.SortingVizualizer" />
+        <activity
+            android:name=".MergeSort.MergeSortActivity"
+            android:exported="false" />
+        <activity
             android:name=".BubbleSort.BubbleSortActivity"
             android:exported="false" />
         <activity
